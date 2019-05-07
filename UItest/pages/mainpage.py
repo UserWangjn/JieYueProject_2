@@ -1,6 +1,6 @@
 import os.path
 from .basepage import BasePage
-from selenium.webdriver.UItest.common.by import By
+from selenium.webdriver.common.by import By
 from UItest.common.loggen import LogGen
 from selenium import webdriver
 logger = LogGen(logger="MainPage").getlog()
