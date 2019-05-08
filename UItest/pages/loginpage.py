@@ -9,7 +9,7 @@ class LoginPage(BasePage):
     #设置登录操作中所用到的三个元素属性，并以元组形式保存
     username = (By.NAME,'username')
     password = (By.NAME,'password')
-    submit = (By.NAME,'submit')
+    submit = (By.XPATH,".//*[@id='loginForm']/ul/li[3]/div/input")
     #定义用户名元素识别及输入函数，并将此操作写入日志
     def input_username(self,username):
         self.find_element(*self.username).send_keys(username)

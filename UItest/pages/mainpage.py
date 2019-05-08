@@ -6,11 +6,12 @@ from selenium import webdriver
 logger = LogGen(logger="MainPage").getlog()
 #定义主页面中所涉及到的元素，userid及退出按钮，通过xpath方式识别
 class MainPage(BasePage):
-    userid_loc = (By.XPATH,'.//*[@id=\'ECS_MEMBERZONE\']/font/font')
-    exit_btn_loc = (By.XPATH,'.//*[@id=\'ECS_MEMBERZONE\']/font/a[2]')
+    userid_loc = (By.XPATH,'.//*[@id=\'top\']/div[3]/ul/li[6]')
+    #exit_btn_loc = (By.XPATH,'.//*[@id=\'ECS_MEMBERZONE\']/font/a[2]')
+    exit_btn_loc = (By.XPATH, './/*[ @id=\'top\']/div[3]/ul/li[1]/a/span')
     #定义打开超链接方法，并将此操作写入日志
     def open(self,base_url):
-        self.open(self.base_url_url,self.pagetitle)
+        self.open(self.base_url,self.pagetitle)
         logger.info("打卡连接: %s " % base_url)
     #定义显示userid信息，并将此操作写入日志
     def show_userid(self):
