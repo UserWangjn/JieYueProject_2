@@ -13,6 +13,7 @@ class LoginPage(BasePage):
     #定义用户名元素识别及输入函数，并将此操作写入日志
     def input_username(self,username):
         self.find_element(*self.username).send_keys(username)
+        print('DEBUG_已经执行send_keys')
         logger.info("输入用户名：%s" % username)
     #定义密码元素识别及输入函数，并将此操作写入日志
     def input_password(self,password):

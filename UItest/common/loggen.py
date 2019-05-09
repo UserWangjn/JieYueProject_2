@@ -6,7 +6,7 @@ class LogGen(object):
         self.logger = logging.getLogger(logger)
         self.logger.setLevel(logging.INFO)
         logtime = time.strftime('%Y%m%d%H%M',time.localtime())
-        logname = os.path.dirname(os.path.abspath('.'))+'/logs/'+logtime+'.log'
+        logname = os.path.dirname(os.path.abspath('.'))+'/UItest/logs/'+logtime+'.log'
         #logname = os.path.dirname(os.path.abspath('.')) + '\\logs\\' + logtime + '.log'
 
         fileh = logging.FileHandler(logname)
