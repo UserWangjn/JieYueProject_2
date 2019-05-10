@@ -97,18 +97,18 @@ def exec_script(driver,testpage, teststep, testdata):
             url = GetUrl(url) #+ 'user.php'
             if driver.current_url != url:
                 #driver.get(url)
-                time.sleep(5)
+                time.sleep(2)
             login = LoginPage(driver, testdata)
             if teststep == '用户名':
                 login.input_username(testdata)
 
             if teststep == '密码':
                 login.input_password(testdata)
-                time.sleep(3)
+                time.sleep(1)
 
             if teststep == '登录':
                 login.click_submit()
-                time.sleep(5)
+                time.sleep(3)
 
         #注册功能测试
         if testpage == '注册':
@@ -129,7 +129,7 @@ def exec_script(driver,testpage, teststep, testdata):
                 time.sleep(3)
             if teststep == '注册':
                 userreg.click_submit()
-                time.sleep(5)
+                time.sleep(3)
 
         if testpage == '主页':
             time.sleep(3)
