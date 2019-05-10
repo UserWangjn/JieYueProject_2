@@ -78,10 +78,8 @@ def get_driver(testpage, teststep, testdata):
         #启动没有问题后加载测试路径并返回driver对象
         driver.maximize_window()
         time.sleep(3)
-        print('DEBUG_加入等待时间')
         driver.get(testdata)
         time.sleep(5)
-        print('DEBUG_加入等待时间')
         get_driver = driver
     else:
         #如果测试用例中的启动参数错误，则写入日志并给予提示
@@ -96,22 +94,16 @@ def exec_script(driver,testpage, teststep, testdata):
         #登陆功能测试
         if testpage == '登录':
             url = driver.current_url
-            print('DEBUG_登录_current_url= %s' %url)
             url = GetUrl(url) #+ 'user.php'
-            print('DEBUG_登录_GetUrl= %s' % url)
             if driver.current_url != url:
                 #driver.get(url)
-                print('DEBUG_加入等待时间')
                 time.sleep(5)
             login = LoginPage(driver, testdata)
             if teststep == '用户名':
                 login.input_username(testdata)
-                print('DEBUG_input_username执行完毕')
 
             if teststep == '密码':
-                print('DEBUG_下面执行input_passwod')
                 login.input_password(testdata)
-                print('DEBUG_输入密码完毕，并且加入等待时间')
                 time.sleep(3)
 
             if teststep == '登录':
@@ -158,9 +150,7 @@ def exec_script(driver,testpage, teststep, testdata):
         exec_script = False
         url = GetUrl(driver.current_url)
         driver.get(url)
-    print('DEBUG_下面要执行return exec_script')
     return exec_script
-    print('DEBUG_return exec_script执行完毕，exec_script = %s' %exec_script)
 
 
 #定义测试用例读取函数
@@ -183,15 +173,15 @@ def read_testcase(testcasefile):
             testpage = ws.cell(row=irow, column=1).value
             teststep = ws.cell(row=irow, column=2).value
             testdata = ws.cell(row=irow, column=4).value
-        #如果是浏览器，说明需启动浏览器，调用浏览器启动函数
+            #如果是浏览器，说明需启动浏览器，调用浏览器启动函数
             if testpage=='浏览器':
                 logger.info('正在启动浏览器')
                 testdriver=get_driver(testpage, teststep, testdata)
             else:
                 #如果不是浏览器，则说明需执行测试用例，调用测试用例执行函数
                 flag=exec_script(testdriver,testpage, teststep, testdata)
-                #执行完成后退出浏览器
-                testdriver.quit()
+        #执行完成后退出浏览器
+        testdriver.quit()
     else:
         #如果测试用例文件不存在，则写入日志，并提示检查文件是否存在
         logger.info('未发现 %s 测试用例，请确认该用例是否存在' %testcasefile)
