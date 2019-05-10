@@ -143,6 +143,11 @@ def exec_script(driver,testpage, teststep, testdata):
                 time.sleep(3)
             if teststep == '退出':
                 mainpage.exit_sys()
+                time.sleep(2)
+            if teststep == '显示当前用户':
+                mainpage.show_userid()
+            if teststep == '打开页面':
+                mainpage.open_page(driver)
                 time.sleep(3)
         if testpage == '其他主页':
             pass
